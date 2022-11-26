@@ -14,6 +14,7 @@ module "ec2_private" {
   monitoring             = false
   vpc_security_group_ids = tolist([module.security-group.security_group_id])
   subnet_id              = module.vpc.private_subnets[count.index]
+  key_name               = var.key_name
 
   tags = {
     Terraform   = "true"
@@ -36,6 +37,7 @@ module "ec2_public" {
   monitoring             = false
   vpc_security_group_ids = tolist([module.security-group.security_group_id])
   subnet_id              = module.vpc.public_subnets[count.index]
+  key_name               = var.key_name
 
   tags = {
     Terraform   = "true"
